@@ -66,16 +66,56 @@ const arrowUpElement = document.getElementById('up-arrow');
 
 const arrowDownElement = document.getElementById('down-arrow');
 
-arrowUpElement.addEventListener('click', function () {
+arrowUpElement.addEventListener('click', reverse)
 
+arrowDownElement.addEventListener('click', play)
+
+const playButtonDOMElement = document.getElementById('play-btn');
+
+const stopButtonDOMElement = document.getElementById('stop-btn');
+
+let playStatus = setInterval(play, 3000)
+
+let reversePlayStatus
+
+playButtonDOMElement.addEventListener('click', function () {
+	
+	clearInterval(reversePlayStatus)
+	
+	playStatus = setInterval(play, 3000)
+})
+
+stopButtonDOMElement.addEventListener('click', function () {
+	clearInterval(playStatus)
+
+	clearInterval(reversePlayStatus)
+})
+
+const reverseDOMElement = document.getElementById('reverse-btn')
+
+reverseDOMElement.addEventListener('click',function(){
+	
+	clearInterval(playStatus)
+	
+	reversePlayStatus = setInterval(reverse, 3000)
+})
+
+
+
+// FUNZIONI
+
+function play() {
+	
+	clearInterval(reversePlayStatus)
+	
 	currentCarouselImg.classList.replace('active', 'hidden')
 
 	currentCarouselThumbnail.classList.replace('selected', 'not-selected')
 
-	currentIndex--
+	currentIndex++
 
-	if (currentIndex < 0) {
-		currentIndex = carouselImagesElements.length - 1
+	if (currentIndex > carouselImagesElements.length - 1) {
+		currentIndex = 0
 	}
 
 	currentCarouselImg = carouselImagesElements[currentIndex]
@@ -85,34 +125,22 @@ arrowUpElement.addEventListener('click', function () {
 	currentCarouselImg.classList.replace('hidden', 'active')
 
 	currentCarouselThumbnail.classList.replace('not-selected', 'selected')
+}
 
-})
 
-arrowDownElement.addEventListener('click', Play)
 
-const playButtonDOMElement = document.getElementById('play-btn');
-
-const stopButtonDOMElement = document.getElementById('stop-btn');
-
-let playStatus = setInterval(Play, 3000)
-
-playButtonDOMElement.addEventListener('click', function () {
-	playStatus = setInterval(Play, 3000)
-})
-
-stopButtonDOMElement.addEventListener('click', function () {
+function reverse() {
+	
 	clearInterval(playStatus)
-})
-
-function Play() {
+	
 	currentCarouselImg.classList.replace('active', 'hidden')
 
 	currentCarouselThumbnail.classList.replace('selected', 'not-selected')
 
-	currentIndex++
+	currentIndex--
 
-	if (currentIndex > carouselImagesElements.length - 1) {
-		currentIndex = 0
+	if (currentIndex < 0) {
+		currentIndex = carouselImagesElements.length - 1
 	}
 
 	currentCarouselImg = carouselImagesElements[currentIndex]
