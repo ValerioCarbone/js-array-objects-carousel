@@ -26,9 +26,9 @@ const images = [
 	},
 ]
 
-const carouselDOMElement = document.querySelector('.carousel')
+const carouselDOMElement = document.querySelector('.carousel');
 
-const thumbnailDOMElement = document.querySelector('.thumbnails')
+const thumbnailDOMElement = document.querySelector('.thumbnails');
 
 // - Cicliamo l'array stampando nell'html ogni singolo oggetto
 // - Aggiungiamo la classe hide alle immagini non attive
@@ -45,28 +45,26 @@ images.forEach((imgInfo) => {
 	thumbnailDOMElement.innerHTML += `<img class="not-selected" src="./${imgInfo.image}">`
 })
 
-const carouselImagesElements = document.querySelectorAll('.hidden')
+const carouselImagesElements = document.querySelectorAll('.hidden');
 
-const carouselThumbnailsElements = document.querySelectorAll('.not-selected')
+const carouselThumbnailsElements = document.querySelectorAll('.not-selected');
 
 // - Aggiungiamo la classe Active all'immagine che vogliamo visualizzare
 
 let currentIndex = 0 
 
-let currentCarouselImg = carouselImagesElements[currentIndex]
+let currentCarouselImg = carouselImagesElements[currentIndex];
 
-let currentCarouselThumbnail = carouselThumbnailsElements[currentIndex]
+let currentCarouselThumbnail = carouselThumbnailsElements[currentIndex];
 
-currentCarouselImg.classList.replace('hidden', 'active')
+currentCarouselImg.classList.replace('hidden', 'active');
 
-currentCarouselThumbnail.classList.replace('not-selected', 'selected')
-
-console.log(carouselImagesElements)
+currentCarouselThumbnail.classList.replace('not-selected', 'selected');
 
 // - Creaiamo l'event listener al click delle freccie il quale cambierà l'immagine da visualizzare spostando la classe active
-const arrowUpElement = document.getElementById('up-arrow')
+const arrowUpElement = document.getElementById('up-arrow');
 
-const arrowDownElement = document.getElementById('down-arrow')
+const arrowDownElement = document.getElementById('down-arrow');
 
 arrowUpElement.addEventListener('click', function(){
 	
@@ -115,26 +113,63 @@ arrowDownElement.addEventListener('click', function(){
 
 // AUTOPLAY	
 
-setInterval(function(){
 
-	currentCarouselImg.classList.replace('active', 'hidden')
+// setInterval(function(){
 
-	currentCarouselThumbnail.classList.replace('selected', 'not-selected')
+// 	currentCarouselImg.classList.replace('active', 'hidden')
+
+// 	currentCarouselThumbnail.classList.replace('selected', 'not-selected')
 	
-	currentIndex++
+// 	currentIndex++
 	
-	if (currentIndex > carouselImagesElements.length - 1){
-		currentIndex = 0
-	}
+// 	if (currentIndex > carouselImagesElements.length - 1){
+// 		currentIndex = 0
+// 	}
 
-	currentCarouselImg = carouselImagesElements[currentIndex]
+// 	currentCarouselImg = carouselImagesElements[currentIndex]
 
-	currentCarouselThumbnail = carouselThumbnailsElements[currentIndex]
+// 	currentCarouselThumbnail = carouselThumbnailsElements[currentIndex]
 
-	currentCarouselImg.classList.replace('hidden', 'active')
+// 	currentCarouselImg.classList.replace('hidden', 'active')
 
-	currentCarouselThumbnail.classList.replace('not-selected', 'selected')
-}, 3000)
+// 	currentCarouselThumbnail.classList.replace('not-selected', 'selected')
+// }, 3000)
 
 
+const playButtonDOMElement = document.getElementById('play-btn');
 
+const stopButtonDOMElement = document.getElementById('stop-btn');
+
+let playStatus = Play()
+
+playButtonDOMElement.addEventListener('click', function(){
+	playStatus = Play()
+})
+
+stopButtonDOMElement.addEventListener('click', function(){
+	clearInterval(playStatus)
+})
+
+function Play() {
+	setInterval(function(){
+
+		currentCarouselImg.classList.replace('active', 'hidden')
+	
+		currentCarouselThumbnail.classList.replace('selected', 'not-selected')
+		
+		currentIndex++
+		
+		if (currentIndex > carouselImagesElements.length - 1){
+			currentIndex = 0
+		}
+	
+		currentCarouselImg = carouselImagesElements[currentIndex]
+	
+		currentCarouselThumbnail = carouselThumbnailsElements[currentIndex]
+	
+		currentCarouselImg.classList.replace('hidden', 'active')
+	
+		currentCarouselThumbnail.classList.replace('not-selected', 'selected')
+	}, 3000)
+	
+}
