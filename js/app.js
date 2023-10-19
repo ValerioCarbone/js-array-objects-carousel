@@ -25,3 +25,19 @@ const images = [
 		text: "Marvel's Avengers is an epic, third-person, action-adventure game that combines an original, cinematic story with single-player and co-operative gameplay.",
 	},
 ]
+
+const carouselDOMElement = document.querySelector('.carousel')
+
+// - Cicliamo l'array stampando nell'html ogni singolo oggetto
+images.forEach((imgInfo) => {
+	carouselDOMElement.innerHTML += 
+	`<div class="hidden">
+	<img src="./${imgInfo.image}">
+	<h4>${imgInfo.title}</h4>
+	<p>${imgInfo.text}</p>
+	</div> `
+})
+
+// - Aggiungiamo la classe hide alle immagini non attive
+// - Aggiungiamo la classe Active all'immagine che vogliamo visualizzare
+// - Creaiamo l'event listener al click delle freccie il quale cambierà l'immagine da visualizzare spostando la classe active
