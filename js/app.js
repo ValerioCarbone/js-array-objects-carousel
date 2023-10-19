@@ -74,14 +74,14 @@ const playButtonDOMElement = document.getElementById('play-btn');
 
 const stopButtonDOMElement = document.getElementById('stop-btn');
 
-let playStatus = setInterval(play, 3000)
+let playStatus = setInterval(play, 3000);
 
-let reversePlayStatus
+let reversePlayStatus;
 
 playButtonDOMElement.addEventListener('click', function () {
-	
+
 	clearInterval(reversePlayStatus)
-	
+
 	playStatus = setInterval(play, 3000)
 })
 
@@ -93,10 +93,10 @@ stopButtonDOMElement.addEventListener('click', function () {
 
 const reverseDOMElement = document.getElementById('reverse-btn')
 
-reverseDOMElement.addEventListener('click',function(){
-	
+reverseDOMElement.addEventListener('click', function () {
+
 	clearInterval(playStatus)
-	
+
 	reversePlayStatus = setInterval(reverse, 3000)
 })
 
@@ -105,7 +105,7 @@ reverseDOMElement.addEventListener('click',function(){
 // FUNZIONI
 
 function play() {
-	
+
 	currentCarouselImg.classList.replace('active', 'hidden')
 
 	currentCarouselThumbnail.classList.replace('selected', 'not-selected')
@@ -128,7 +128,7 @@ function play() {
 
 
 function reverse() {
-		
+
 	currentCarouselImg.classList.replace('active', 'hidden')
 
 	currentCarouselThumbnail.classList.replace('selected', 'not-selected')
