@@ -33,10 +33,18 @@ images.forEach((imgInfo) => {
 	carouselDOMElement.innerHTML += 
 	`<div class="hidden">
 	<img src="./${imgInfo.image}">
-	<h4>${imgInfo.title}</h4>
-	<p>${imgInfo.text}</p>
+	<div class="img-text">
+	<h3 class="img-title">${imgInfo.title}</h3>
+	<p class="img-description">${imgInfo.text}</p>
+	</div>
 	</div> `
 })
+
+const carouselImagesElements = document.querySelectorAll('.hidden')
+
+let currentIndex = 0 
+
+carouselImagesElements[currentIndex].classList.replace('hidden', 'active')
 
 // - Aggiungiamo la classe hide alle immagini non attive
 // - Aggiungiamo la classe Active all'immagine che vogliamo visualizzare
