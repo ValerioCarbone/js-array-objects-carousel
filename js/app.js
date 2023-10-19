@@ -106,8 +106,6 @@ reverseDOMElement.addEventListener('click',function(){
 
 function play() {
 	
-	clearInterval(reversePlayStatus)
-	
 	currentCarouselImg.classList.replace('active', 'hidden')
 
 	currentCarouselThumbnail.classList.replace('selected', 'not-selected')
@@ -130,9 +128,7 @@ function play() {
 
 
 function reverse() {
-	
-	clearInterval(playStatus)
-	
+		
 	currentCarouselImg.classList.replace('active', 'hidden')
 
 	currentCarouselThumbnail.classList.replace('selected', 'not-selected')
