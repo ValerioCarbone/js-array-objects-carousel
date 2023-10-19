@@ -29,6 +29,7 @@ const images = [
 const carouselDOMElement = document.querySelector('.carousel')
 
 // - Cicliamo l'array stampando nell'html ogni singolo oggetto
+// - Aggiungiamo la classe hide alle immagini non attive
 images.forEach((imgInfo) => {
 	carouselDOMElement.innerHTML += 
 	`<div class="hidden">
@@ -42,10 +43,55 @@ images.forEach((imgInfo) => {
 
 const carouselImagesElements = document.querySelectorAll('.hidden')
 
+// - Aggiungiamo la classe Active all'immagine che vogliamo visualizzare
+
 let currentIndex = 0 
 
-carouselImagesElements[currentIndex].classList.replace('hidden', 'active')
+let currentCarouselImg = carouselImagesElements[currentIndex]
 
-// - Aggiungiamo la classe hide alle immagini non attive
-// - Aggiungiamo la classe Active all'immagine che vogliamo visualizzare
+currentCarouselImg.classList.replace('hidden', 'active')
+
+console.log(carouselImagesElements)
+
 // - Creaiamo l'event listener al click delle freccie il quale cambierà l'immagine da visualizzare spostando la classe active
+const arrowUpElement = document.getElementById('up-arrow')
+
+const arrowDownElement = document.getElementById('down-arrow')
+
+arrowUpElement.addEventListener('click', function(){
+	
+	currentCarouselImg.classList.replace('active', 'hidden')
+
+	currentIndex--
+	
+	if (currentIndex < 0){
+		currentIndex = carouselImagesElements.length - 1
+	}
+
+	currentCarouselImg = carouselImagesElements[currentIndex]
+
+	currentCarouselImg.classList.replace('hidden', 'active')
+
+	console.log(currentIndex)
+
+})
+
+arrowDownElement.addEventListener('click', function(){
+	
+	currentCarouselImg.classList.replace('active', 'hidden')
+	
+	currentIndex++
+	
+	if (currentIndex > carouselImagesElements.length - 1){
+		currentIndex = 0
+	}
+
+	currentCarouselImg = carouselImagesElements[currentIndex]
+
+	currentCarouselImg.classList.replace('hidden', 'active')
+
+})
+
+
+
+
