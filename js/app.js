@@ -33,8 +33,8 @@ const thumbnailDOMElement = document.querySelector('.thumbnails');
 // - Cicliamo l'array stampando nell'html ogni singolo oggetto
 // - Aggiungiamo la classe hide alle immagini non attive
 images.forEach((imgInfo) => {
-	carouselDOMElement.innerHTML += 
-	`<div class="hidden">
+	carouselDOMElement.innerHTML +=
+		`<div class="hidden">
 	<img src="./${imgInfo.image}">
 	<div class="img-text">
 	<h3 class="img-title">${imgInfo.title}</h3>
@@ -51,7 +51,7 @@ const carouselThumbnailsElements = document.querySelectorAll('.not-selected');
 
 // - Aggiungiamo la classe Active all'immagine che vogliamo visualizzare
 
-let currentIndex = 0 
+let currentIndex = 0
 
 let currentCarouselImg = carouselImagesElements[currentIndex];
 
@@ -66,15 +66,15 @@ const arrowUpElement = document.getElementById('up-arrow');
 
 const arrowDownElement = document.getElementById('down-arrow');
 
-arrowUpElement.addEventListener('click', function(){
-	
+arrowUpElement.addEventListener('click', function () {
+
 	currentCarouselImg.classList.replace('active', 'hidden')
 
 	currentCarouselThumbnail.classList.replace('selected', 'not-selected')
 
 	currentIndex--
-	
-	if (currentIndex < 0){
+
+	if (currentIndex < 0) {
 		currentIndex = carouselImagesElements.length - 1
 	}
 
@@ -88,15 +88,15 @@ arrowUpElement.addEventListener('click', function(){
 
 })
 
-arrowDownElement.addEventListener('click', function(){
-	
+arrowDownElement.addEventListener('click', function () {
+
 	currentCarouselImg.classList.replace('active', 'hidden')
 
 	currentCarouselThumbnail.classList.replace('selected', 'not-selected')
-	
+
 	currentIndex++
-	
-	if (currentIndex > carouselImagesElements.length - 1){
+
+	if (currentIndex > carouselImagesElements.length - 1) {
 		currentIndex = 0
 	}
 
@@ -110,66 +110,36 @@ arrowDownElement.addEventListener('click', function(){
 
 })
 
-
-// AUTOPLAY	
-
-
-// setInterval(function(){
-
-// 	currentCarouselImg.classList.replace('active', 'hidden')
-
-// 	currentCarouselThumbnail.classList.replace('selected', 'not-selected')
-	
-// 	currentIndex++
-	
-// 	if (currentIndex > carouselImagesElements.length - 1){
-// 		currentIndex = 0
-// 	}
-
-// 	currentCarouselImg = carouselImagesElements[currentIndex]
-
-// 	currentCarouselThumbnail = carouselThumbnailsElements[currentIndex]
-
-// 	currentCarouselImg.classList.replace('hidden', 'active')
-
-// 	currentCarouselThumbnail.classList.replace('not-selected', 'selected')
-// }, 3000)
-
-
 const playButtonDOMElement = document.getElementById('play-btn');
 
 const stopButtonDOMElement = document.getElementById('stop-btn');
 
-let playStatus = Play()
+let playStatus = setInterval(Play, 3000)
 
-playButtonDOMElement.addEventListener('click', function(){
-	playStatus = Play()
+playButtonDOMElement.addEventListener('click', function () {
+	playStatus = setInterval(Play, 3000)
 })
 
-stopButtonDOMElement.addEventListener('click', function(){
+stopButtonDOMElement.addEventListener('click', function () {
 	clearInterval(playStatus)
 })
 
 function Play() {
-	setInterval(function(){
+	currentCarouselImg.classList.replace('active', 'hidden')
 
-		currentCarouselImg.classList.replace('active', 'hidden')
-	
-		currentCarouselThumbnail.classList.replace('selected', 'not-selected')
-		
-		currentIndex++
-		
-		if (currentIndex > carouselImagesElements.length - 1){
-			currentIndex = 0
-		}
-	
-		currentCarouselImg = carouselImagesElements[currentIndex]
-	
-		currentCarouselThumbnail = carouselThumbnailsElements[currentIndex]
-	
-		currentCarouselImg.classList.replace('hidden', 'active')
-	
-		currentCarouselThumbnail.classList.replace('not-selected', 'selected')
-	}, 3000)
-	
+	currentCarouselThumbnail.classList.replace('selected', 'not-selected')
+
+	currentIndex++
+
+	if (currentIndex > carouselImagesElements.length - 1) {
+		currentIndex = 0
+	}
+
+	currentCarouselImg = carouselImagesElements[currentIndex]
+
+	currentCarouselThumbnail = carouselThumbnailsElements[currentIndex]
+
+	currentCarouselImg.classList.replace('hidden', 'active')
+
+	currentCarouselThumbnail.classList.replace('not-selected', 'selected')
 }
