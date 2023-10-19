@@ -55,11 +55,15 @@ img {
 }
 
 .thumbnails {
+
+    display: flex;
+    flex-direction: column;
+}
+
+.thumbnails-container {
     position: relative;
     flex-basis: 200px;
     flex-shrink: 0;
-    display: flex;
-    flex-direction: column;
 }
 
 .carousel {
@@ -81,4 +85,18 @@ img {
     color: white;
     right: 40px;
     bottom: 40px;
+}
+
+.thumbnails img {
+    display: block;
+    height: calc(500px / 5);
+}
+
+.selected {
+    filter: brightness(1);
+    border: inset 2px white;
+}
+
+.not-selected {
+    filter: brightness(0.5);
 }

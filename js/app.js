@@ -28,6 +28,8 @@ const images = [
 
 const carouselDOMElement = document.querySelector('.carousel')
 
+const thumbnailDOMElement = document.querySelector('.thumbnails')
+
 // - Cicliamo l'array stampando nell'html ogni singolo oggetto
 // - Aggiungiamo la classe hide alle immagini non attive
 images.forEach((imgInfo) => {
@@ -39,9 +41,13 @@ images.forEach((imgInfo) => {
 	<p class="img-description">${imgInfo.text}</p>
 	</div>
 	</div> `
+
+	thumbnailDOMElement.innerHTML += `<img class="not-selected" src="./${imgInfo.image}">`
 })
 
 const carouselImagesElements = document.querySelectorAll('.hidden')
+
+const carouselThumbnailsElements = document.querySelectorAll('.not-selected')
 
 // - Aggiungiamo la classe Active all'immagine che vogliamo visualizzare
 
@@ -49,7 +55,11 @@ let currentIndex = 0
 
 let currentCarouselImg = carouselImagesElements[currentIndex]
 
+let currentCarouselThumbnail = carouselThumbnailsElements[currentIndex]
+
 currentCarouselImg.classList.replace('hidden', 'active')
+
+currentCarouselThumbnail.classList.replace('not-selected', 'selected')
 
 console.log(carouselImagesElements)
 
@@ -62,6 +72,8 @@ arrowUpElement.addEventListener('click', function(){
 	
 	currentCarouselImg.classList.replace('active', 'hidden')
 
+	currentCarouselThumbnail.classList.replace('selected', 'not-selected')
+
 	currentIndex--
 	
 	if (currentIndex < 0){
@@ -70,15 +82,19 @@ arrowUpElement.addEventListener('click', function(){
 
 	currentCarouselImg = carouselImagesElements[currentIndex]
 
+	currentCarouselThumbnail = carouselThumbnailsElements[currentIndex]
+
 	currentCarouselImg.classList.replace('hidden', 'active')
 
-	console.log(currentIndex)
+	currentCarouselThumbnail.classList.replace('not-selected', 'selected')
 
 })
 
 arrowDownElement.addEventListener('click', function(){
 	
 	currentCarouselImg.classList.replace('active', 'hidden')
+
+	currentCarouselThumbnail.classList.replace('selected', 'not-selected')
 	
 	currentIndex++
 	
@@ -88,7 +104,11 @@ arrowDownElement.addEventListener('click', function(){
 
 	currentCarouselImg = carouselImagesElements[currentIndex]
 
+	currentCarouselThumbnail = carouselThumbnailsElements[currentIndex]
+
 	currentCarouselImg.classList.replace('hidden', 'active')
+
+	currentCarouselThumbnail.classList.replace('not-selected', 'selected')
 
 })
 
