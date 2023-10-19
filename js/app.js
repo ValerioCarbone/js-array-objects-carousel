@@ -88,27 +88,7 @@ arrowUpElement.addEventListener('click', function () {
 
 })
 
-arrowDownElement.addEventListener('click', function () {
-
-	currentCarouselImg.classList.replace('active', 'hidden')
-
-	currentCarouselThumbnail.classList.replace('selected', 'not-selected')
-
-	currentIndex++
-
-	if (currentIndex > carouselImagesElements.length - 1) {
-		currentIndex = 0
-	}
-
-	currentCarouselImg = carouselImagesElements[currentIndex]
-
-	currentCarouselThumbnail = carouselThumbnailsElements[currentIndex]
-
-	currentCarouselImg.classList.replace('hidden', 'active')
-
-	currentCarouselThumbnail.classList.replace('not-selected', 'selected')
-
-})
+arrowDownElement.addEventListener('click', Play)
 
 const playButtonDOMElement = document.getElementById('play-btn');
 
