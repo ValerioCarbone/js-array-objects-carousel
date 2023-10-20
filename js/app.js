@@ -66,21 +66,9 @@ const arrowUpElement = document.getElementById('up-arrow');
 
 const arrowDownElement = document.getElementById('down-arrow');
 
-arrowUpElement.addEventListener('click', () =>{
-	clearInterval(playStatus)
+arrowUpElement.addEventListener('click', reverse)
 
-	clearInterval(reversePlayStatus)
-
-	reverse
-})
-
-arrowDownElement.addEventListener('click', () =>{
-	clearInterval(playStatus)
-
-	clearInterval(reversePlayStatus)
-
-	play
-})
+arrowDownElement.addEventListener('click', play)
 
 const playButtonDOMElement = document.getElementById('play-btn');
 
@@ -110,6 +98,28 @@ reverseDOMElement.addEventListener('click', function () {
 	clearInterval(playStatus)
 
 	reversePlayStatus = setInterval(reverse, 3000)
+})
+
+carouselThumbnailsElements.forEach((thumb,i) =>{
+
+	thumb.addEventListener('click', function(){
+		
+		currentCarouselImg.classList.replace('active', 'hidden')
+
+		currentCarouselThumbnail.classList.replace('selected', 'not-selected')
+
+		currentIndex = i 
+
+		currentCarouselImg = carouselImagesElements[currentIndex]
+
+		currentCarouselThumbnail = carouselThumbnailsElements[currentIndex]
+
+		currentCarouselImg.classList.replace('hidden', 'active')
+
+		currentCarouselThumbnail.classList.replace('not-selected', 'selected')
+
+
+	})
 })
 
 
