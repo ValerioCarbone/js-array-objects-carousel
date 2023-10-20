@@ -66,9 +66,21 @@ const arrowUpElement = document.getElementById('up-arrow');
 
 const arrowDownElement = document.getElementById('down-arrow');
 
-arrowUpElement.addEventListener('click', reverse)
+arrowUpElement.addEventListener('click', () =>{
+	clearInterval(playStatus)
 
-arrowDownElement.addEventListener('click', play)
+	clearInterval(reversePlayStatus)
+
+	reverse
+})
+
+arrowDownElement.addEventListener('click', () =>{
+	clearInterval(playStatus)
+
+	clearInterval(reversePlayStatus)
+
+	play
+})
 
 const playButtonDOMElement = document.getElementById('play-btn');
 
@@ -99,7 +111,6 @@ reverseDOMElement.addEventListener('click', function () {
 
 	reversePlayStatus = setInterval(reverse, 3000)
 })
-
 
 
 // FUNZIONI
